@@ -1,5 +1,5 @@
 package com.devsuperior.dscommerce.services;
-import com.devsuperior.dscommerce.Repositories.ProductRepository;
+import com.devsuperior.dscommerce.repositories.ProductRepository;
 import com.devsuperior.dscommerce.dto.ProductDTO;
 import com.devsuperior.dscommerce.entities.Product;
 import com.devsuperior.dscommerce.services.exceptions.DatabaseException;
@@ -34,7 +34,7 @@ public class ProductService {
     @Transactional
     public ProductDTO insert(ProductDTO dto) {
         Product entity = new Product();
-        copyDto(entity, dto);
+        copyDtoToEntity(entity, dto);
         entity = repository.save(entity);
         return new ProductDTO(entity);
     }
@@ -43,7 +43,7 @@ public class ProductService {
     public ProductDTO update(Long id, ProductDTO dto) {
         try{
             Product entity = repository.getReferenceById(id);
-            copyDto(entity, dto);
+            copyDtoToEntity(entity, dto);
             entity = repository.save(entity);
             return new ProductDTO(entity);
         }
@@ -68,7 +68,7 @@ public class ProductService {
     }
 
 
-    private void copyDto(Product entity, ProductDTO dto) {
+    private void copyDtoToEntity(Product entity, ProductDTO dto) {
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
