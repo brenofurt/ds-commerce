@@ -1,6 +1,4 @@
 package com.devsuperior.dscommerce.services;
-
-import java.beans.Transient;
 import java.util.List;
 
 import com.devsuperior.dscommerce.dto.UserDTO;
@@ -61,4 +59,6 @@ public class UserService implements UserDetailsService {
 		User user = authenticated();
 		return new UserDTO(user);
 	}
+
+
 }
